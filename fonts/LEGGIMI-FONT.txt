@@ -1,0 +1,8 @@
+I font in questa cartella NON sono coperti dal file LICENSE di Impresa Gigi.
+Sono distribuiti con la loro licenza originale, la SIL Open Font License 1.1
+(https://openfontlicense.org):
+- Bricolage Grotesque, Copyright The Bricolage Grotesque Project Authors
+- Atkinson Hyperlegible, Copyright Braille Institute of America
+- JetBrains Mono, Copyright The JetBrains Mono Project Authors
+Sono ospitati qui, invece che caricati da Google Fonts, per non inviare a terzi
+l'indirizzo IP dei visitatori.

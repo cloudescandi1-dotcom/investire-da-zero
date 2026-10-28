@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Guida gratuita di educazione finanziaria per principianti: inflazione, rischio, interesse composto, costi, tasse e truffe. Niente da comprare.">
 <title>Investire da zero</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-lM5O0j5OstuLquTIWgha7B53v3TYYsLkDcTn/ZF1gtE='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 body{margin:0}img{max-width:100%}
 /* Layout minimal: una colonna di lettura stretta, tanto bianco, righe sottili, un solo accento
@@ -456,6 +456,8 @@ footer .wrap{display:grid;gap:6px}
 
 <script>
 (function(){
+  // la guida non si lascia mostrare dentro pagine altrui (siti truffa che la incorniciano)
+  if(window.top!==window.self){try{window.top.location=window.self.location.href;}catch(e){document.documentElement.innerHTML='';return;}}
   var m=document.getElementById('m'), y=document.getElementById('y'), r=document.getElementById('r');
   var fmt=new Intl.NumberFormat('it-IT',{maximumFractionDigits:0});
   var svg=document.getElementById('chart'), NS='http://www.w3.org/2000/svg';

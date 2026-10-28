@@ -28,7 +28,11 @@ dalle convenzioni internazionali.
    della piattaforma (per esempio "fork") non autorizzano usi diversi da
    quelli previsti dai termini della piattaforma stessa.
 
-4. Natura del contenuto
+4. Font
+   I font nella cartella "fonts" sono di terzi e restano sotto la loro
+   licenza (SIL Open Font License 1.1): vedi fonts/LEGGIMI-FONT.txt.
+
+5. Natura del contenuto
    L'Opera è educazione finanziaria generale. Non è consulenza in materia di
    investimenti né una raccomandazione a comprare o vendere strumenti
    finanziari. È fornita "così com'è", senza garanzie di alcun tipo.
