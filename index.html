@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Guida gratuita di educazione finanziaria per principianti: inflazione, rischio, interesse composto, costi, tasse e truffe. Niente da comprare.">
+<title>Investire da zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+body{margin:0}img{max-width:100%}
+/* Layout minimal: una colonna di lettura stretta, tanto bianco, righe sottili, un solo accento
+   (l'arancione del logo) usato solo per numeri e collegamenti attivi. Niente ombre, niente card. */
+:root{
+  --bg:#fbfbfa; --surface:#fbfbfa; --ink:#16191a; --muted:#6a7174; --line:#e4e6e6;
+  --petrol:#1b5465; --orange:#d9661a; --orange-soft:transparent; --petrol-soft:#f1f3f3;
+  --warn:#16191a; --warn-bg:transparent;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111314; --surface:#111314; --ink:#eceeee; --muted:#959c9f; --line:#272b2d;
+    --petrol:#8cc4d2; --orange:#f0904a; --petrol-soft:#191c1d; --warn:#eceeee; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111314; --surface:#111314; --ink:#eceeee; --muted:#959c9f; --line:#272b2d;
+  --petrol:#8cc4d2; --orange:#f0904a; --petrol-soft:#191c1d; --warn:#eceeee; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:17px/1.7 var(--body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+a{color:var(--ink);text-decoration-color:var(--orange);text-underline-offset:3px}
+a:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.15;text-wrap:balance;margin:0}
+.wrap{max-width:720px;margin:0 auto}
+
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  margin:0 calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px max(16px, env(safe-area-inset-left, 0px))}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:16px;color:var(--ink);text-decoration:none}
+.brand svg{width:26px;height:26px;flex:none}
+.brand svg circle{display:none}
+.top nav{display:flex;gap:20px;font-size:14px}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+@media (max-width:560px){.top nav .hide-sm{display:none}}
+
+.hero{display:block;padding-block:72px 40px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(40px,7vw,64px);font-weight:500;letter-spacing:-.03em;margin:18px 0 20px}
+.hero h1 .up{color:var(--muted)}
+.lead{font-size:19px;color:var(--muted);max-width:40ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.btn{font-weight:700;text-decoration:none;padding:0;border:0}
+.btn.primary{color:var(--bg);background:var(--ink);padding:11px 20px;border-radius:999px}
+.btn.ghost{color:var(--ink);text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:4px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:32px;font-size:13.5px;color:var(--muted)}
+.facts b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+
+.calc{margin-top:56px;border-top:1px solid var(--line);padding-top:32px}
+.calc h2{font-size:24px;margin-bottom:4px}
+.calc .sub{font-size:14.5px;color:var(--muted);margin:0 0 20px}
+.ctrl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:14px}
+.ctrl label{font-size:15px;color:var(--muted)}
+.ctrl output{font:500 15px var(--mono);font-variant-numeric:tabular-nums}
+.ctrl input{grid-column:1/-1;width:100%;accent-color:var(--orange)}
+.result{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0 8px}
+.result span{display:block;font-size:13px;color:var(--muted)}
+.result strong{font:500 28px var(--mono);font-variant-numeric:tabular-nums}
+.result .gain strong{color:var(--orange)}
+#chart{width:100%;height:auto;display:block}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+.notice{font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:20px;margin-bottom:24px}
+.notice strong{color:var(--ink)}
+
+.layout{display:block;padding-bottom:64px}
+.toc{padding-block:8px 24px;font-size:15px}
+.toc p{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px 24px;counter-reset:c}
+.toc li{counter-increment:c}
+.toc a{display:grid;grid-template-columns:30px 1fr;color:var(--ink);text-decoration:none;padding:3px 0}
+.toc a::before{content:counter(c,decimal-leading-zero);font:500 12px/1.9 var(--mono);color:var(--muted)}
+.toc a:hover,.toc a.on{color:var(--orange)}
+article{min-width:0}
+section.ch{border-top:1px solid var(--line);padding-block:8px 32px}
+.ch .num{font:500 12px var(--mono);letter-spacing:.1em;color:var(--muted);display:block;margin:36px 0 10px}
+.ch h2{font-size:clamp(26px,3.6vw,32px);letter-spacing:-.015em;margin-bottom:18px}
+.ch h3{font-size:18px;font-weight:700;margin:28px 0 8px}
+.ch p{margin:0 0 14px}
+.ch ul,.ch ol{margin:0 0 16px;padding-left:20px}
+.ch li{margin-bottom:6px}
+.key{font-size:19px;margin:0 0 18px}
+.tbl{overflow-x:auto;margin:8px 0 20px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+td.n,th.n{text-align:right;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-right:0;padding-left:12px}
+.caption{font-size:13.5px;color:var(--muted);margin:-10px 0 18px}
+.alarm{padding-left:22px!important}
+.alarm li{margin-bottom:8px}
+.stat{margin:4px 0 22px}
+.stat b{display:block;font:500 clamp(48px,9vw,72px)/1 var(--display);letter-spacing:-.03em;color:var(--orange);margin-bottom:8px}
+.stat span{color:var(--muted);max-width:44ch;display:block}
+dl.gloss{display:grid;grid-template-columns:minmax(110px,170px) 1fr;margin:0}
+dl.gloss dt,dl.gloss dd{margin:0;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+dl.gloss dt{font-weight:700;padding-right:16px}
+@media (max-width:520px){dl.gloss{grid-template-columns:1fr}dl.gloss dt{border-bottom:0;padding-bottom:0}}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;color:var(--muted);font-size:13.5px}
+footer .wrap{display:grid;gap:6px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inizio" aria-label="Impresa Gigi, torna all'inizio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><rect x="10" y="13" width="4" height="3" fill="#e9761f"/><polygon points="10,18 14,18 14,26 10,31" fill="#e9761f"/><polygon points="12,31 18,20 22,20 16,31" fill="var(--petrol)"/><polygon points="17,31 27,13 24,12 31,9 30,17 28,15 21,31" fill="#e9761f"/><path d="M24 22h7v9h-3v-2a6 6 0 0 1-9 1l2-3a3 3 0 0 0 7-1v-1h-4z" fill="var(--petrol)"/></svg>
+      Impresa Gigi
+    </a>
+    <nav aria-label="Sezioni">
+      <a href="#calcolatrice" class="hide-sm">Calcolatrice</a>
+      <a href="#capitoli">Capitoli</a>
+      <a href="#c13">Glossario</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="inizio">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Guida gratuita · 13 capitoli</span>
+      <h1>Investire da&nbsp;zero, <span class="up">con le fonti in mano.</span></h1>
+      <p class="lead">Le basi spiegate semplici: inflazione, rischio, interesse composto, costi, tasse e truffe. Niente da comprare, niente promesse.</p>
+      <div class="cta">
+        <a class="btn primary" href="#c1">Inizia a leggere</a>
+        <a class="btn ghost" href="#calcolatrice">Prova la calcolatrice</a>
+      </div>
+      <div class="facts">
+        <span><b>3-5 min</b> a capitolo</span>
+        <span><b>28/10/2026</b> dati ricontrollati</span>
+        <span><b>0 €</b> sempre</span>
+      </div>
+    </div>
+
+    <div class="calc" id="calcolatrice" aria-labelledby="calc-t">
+      <h2 id="calc-t">Quanto pesa il tempo?</h2>
+      <p class="sub">Versamento mensile, rendimento ipotetico e costante. Solo per capire il meccanismo.</p>
+      <div class="ctrl"><label for="m">Ogni mese</label><output id="mo" for="m">100 €</output><input id="m" type="range" min="10" max="500" step="10" value="100"></div>
+      <div class="ctrl"><label for="y">Per quanti anni</label><output id="yo" for="y">20 anni</output><input id="y" type="range" min="1" max="40" step="1" value="20"></div>
+      <div class="ctrl"><label for="r">Rendimento annuo ipotetico</label><output id="ro" for="r">4,0%</output><input id="r" type="range" min="0" max="8" step="0.5" value="4"></div>
+      <div class="result">
+        <div><span>Hai versato</span><strong id="paid">24.000 €</strong></div>
+        <div class="gain"><span>Valore finale</span><strong id="final">36.677 €</strong></div>
+      </div>
+      <svg id="chart" viewBox="0 0 360 150" role="img" aria-label="Grafico: soldi versati e valore nel tempo"></svg>
+      <p class="note">Prima di tasse, costi e inflazione. Nella realtà i rendimenti non sono costanti e possono essere negativi: nessuno può garantirli.</p>
+    </div>
+  </section>
+
+  <div class="notice" role="note">
+    <div><strong>Avviso importante.</strong> Questa guida è educazione finanziaria generale. Non è consulenza in materia di investimenti, non è una raccomandazione a comprare o vendere nulla e non conosce la tua situazione. Investire può far perdere denaro, anche tutto il capitale. Chi scrive non è un consulente abilitato: per decisioni personali rivolgiti a un consulente autorizzato (albo OCF) e, se sei minorenne, parlane prima con i tuoi genitori. Le informazioni sono state raccolte e confrontate da diverse fonti ufficiali e riconosciute, consultabili online, e ricontrollate il 28/10/2026.</div>
+  </div>
+
+  <div class="layout" id="capitoli">
+    <nav class="toc" aria-label="Indice dei capitoli">
+      <p>Indice</p>
+      <ol>
+        <li><a href="#c1">Inflazione</a></li>
+        <li><a href="#c2">Fondo di emergenza</a></li>
+        <li><a href="#c3">Rischio e rendimento</a></li>
+        <li><a href="#c4">Interesse composto</a></li>
+        <li><a href="#c5">Diversificazione</a></li>
+        <li><a href="#c6">Gli strumenti</a></li>
+        <li><a href="#c7">Costi e TER</a></li>
+        <li><a href="#c8">Piano di accumulo</a></li>
+        <li><a href="#c9">Le tasse in Italia</a></li>
+        <li><a href="#c10">Truffe</a></li>
+        <li><a href="#c11">Trading e CFD</a></li>
+        <li><a href="#c12">Se sei minorenne</a></li>
+        <li><a href="#c13">Glossario</a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <section class="ch" id="c1">
+        <span class="num">Capitolo 01</span>
+        <h2>Perché investire e cos'è l'inflazione</h2>
+        <p class="key">Tenere i soldi fermi non è "zero rischio": è il rischio di perdere potere d'acquisto piano piano.</p>
+        <p>Metti 1.000 € in un cassetto. Se i prezzi salgono del 2% l'anno, fra 10 anni comprano quanto circa <strong>820 €</strong> di oggi. Con il 3% l'anno, circa <strong>744 €</strong>. Questo è l'effetto dell'<strong>inflazione</strong>, l'aumento generale dei prezzi.</p>
+        <p>Secondo l'ISTAT, in Italia nel 2025 i prezzi al consumo (indice NIC) sono saliti in media dell'<strong>1,5%</strong>, dopo il +1,0% del 2024. Nel 2022-2023 l'inflazione era stata molto più alta.</p>
+        <p><strong>Investire</strong> vuol dire usare i soldi che non ti servono a breve per comprare qualcosa che <em>potrebbe</em> crescere di valore nel tempo. "Potrebbe" è la parola chiave: ogni investimento ha un rischio.</p>
+      </section>
+
+      <section class="ch" id="c2">
+        <span class="num">Capitolo 02</span>
+        <h2>Prima di tutto: il fondo di emergenza</h2>
+        <p class="key">Prima di investire anche un euro serve un cuscinetto di soldi sicuri e disponibili subito.</p>
+        <p>Il <strong>fondo di emergenza</strong> sta su un conto corrente o un conto deposito non vincolato, per gli imprevisti: una spesa medica, il telefono rotto, un periodo senza entrate. Viene prima perché, se ti servono soldi mentre i tuoi investimenti sono in perdita, sei costretto a vendere nel momento peggiore.</p>
+        <p>Una regola diffusa tra gli educatori finanziari è tenere da parte <strong>da 3 a 6 mesi di spese essenziali</strong>. Non è una legge: è un punto di partenza.</p>
+        <ol>
+          <li>Niente debiti costosi (carte revolving, rate a tassi alti).</li>
+          <li>Fondo di emergenza.</li>
+          <li>Solo dopo, investimenti con un orizzonte lungo.</li>
+        </ol>
+      </section>
+
+      <section class="ch" id="c3">
+        <span class="num">Capitolo 03</span>
+        <h2>Rischio e rendimento</h2>
+        <p class="key">Non esiste un rendimento alto senza un rischio alto. Chi promette entrambe le cose sbaglia o ti sta truffando.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Rischio</th><th>Cosa vuol dire</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Di mercato</strong></td><td>scende tutto il mercato</td><td>una crisi fa crollare le borse</td></tr>
+            <tr><td><strong>Di credito</strong></td><td>chi ti deve i soldi non li restituisce</td><td>un'azienda che ha emesso obbligazioni fallisce</td></tr>
+            <tr><td><strong>Di tasso</strong></td><td>se i tassi salgono, le obbligazioni già emesse valgono meno</td><td>un titolo al 2% quando i nuovi pagano il 4%</td></tr>
+            <tr><td><strong>Di liquidità</strong></td><td>non riesci a vendere subito, o solo a prezzo basso</td><td>un titolo poco scambiato</td></tr>
+            <tr><td><strong>Di cambio</strong></td><td>il cambio tra valute ti penalizza</td><td>un titolo in dollari quando il dollaro scende</td></tr>
+            <tr><td><strong>Di concentrazione</strong></td><td>hai messo tutto su una cosa sola</td><td>tutti i risparmi in un'unica azione</td></tr>
+          </tbody>
+        </table></div>
+        <p><strong>Le perdite sono asimmetriche.</strong> Dopo un −50% per tornare al punto di partenza serve un <strong>+100%</strong>; dopo un −20% serve un +25%. Per questo evitare le grandi perdite conta più che inseguire i grandi guadagni. I soldi che ti servono entro pochi anni non dovrebbero stare in strumenti che oscillano molto.</p>
+      </section>
+
+      <section class="ch" id="c4">
+        <span class="num">Capitolo 04</span>
+        <h2>L'interesse composto, con i numeri</h2>
+        <p class="key">Il fattore che pesa di più è il tempo: iniziare presto con poco può contare più che iniziare tardi con tanto.</p>
+        <p>Con l'<strong>interesse composto</strong> guadagni interessi anche sugli interessi già maturati e reinvestiti. Con quello semplice, solo sul capitale iniziale.</p>
+        <h3>1.000 € una volta sola, al 5% ipotetico l'anno</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>Anni</th><th class="n">Interesse semplice</th><th class="n">Interesse composto</th></tr></thead>
+          <tbody>
+            <tr><td>10</td><td class="n">1.500 €</td><td class="n">~1.629 €</td></tr>
+            <tr><td>20</td><td class="n">2.000 €</td><td class="n">~2.653 €</td></tr>
+            <tr><td>30</td><td class="n">2.500 €</td><td class="n">~4.322 €</td></tr>
+          </tbody>
+        </table></div>
+        <h3>100 € al mese, a rendimenti ipotetici e costanti</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>Anni</th><th class="n">Versato</th><th class="n">0%</th><th class="n">2%</th><th class="n">4%</th><th class="n">6%</th></tr></thead>
+          <tbody>
+            <tr><td>10</td><td class="n">12.000 €</td><td class="n">12.000 €</td><td class="n">~13.272 €</td><td class="n">~14.725 €</td><td class="n">~16.388 €</td></tr>
+            <tr><td>20</td><td class="n">24.000 €</td><td class="n">24.000 €</td><td class="n">~29.480 €</td><td class="n">~36.677 €</td><td class="n">~46.204 €</td></tr>
+            <tr><td>30</td><td class="n">36.000 €</td><td class="n">36.000 €</td><td class="n">~49.273 €</td><td class="n">~69.405 €</td><td class="n">~100.452 €</td></tr>
+          </tbody>
+        </table></div>
+        <p class="caption">Capitalizzazione mensile, prima di tasse, costi e inflazione. Puoi provare altre cifre con la <a href="#calcolatrice">calcolatrice</a>.</p>
+        <ul>
+          <li>Nella realtà i rendimenti <strong>non sono costanti</strong>: ci sono anni negativi, anche molto negativi.</li>
+          <li>Nessuno strumento garantisce il 4% o il 6% l'anno. Chi lo garantisce è un segnale d'allarme.</li>
+          <li>Tasse, costi e inflazione riducono il risultato reale.</li>
+        </ul>
+      </section>
+
+      <section class="ch" id="c5">
+        <span class="num">Capitolo 05</span>
+        <h2>La diversificazione</h2>
+        <p class="key">Non mettere tutte le uova nello stesso paniere, ma sapere che il paniere può comunque cadere.</p>
+        <p><strong>Diversificare</strong> vuol dire distribuire i soldi su molti titoli, settori, paesi e tipi di strumento. Con un'unica azione, se l'azienda fallisce perdi il 100%; con un pezzetto di 500 aziende, il fallimento di una pesa poco.</p>
+        <ul>
+          <li><strong>Cosa fa:</strong> riduce il rischio legato a una singola azienda o a un singolo paese.</li>
+          <li><strong>Cosa non fa:</strong> non elimina il rischio di mercato e non garantisce un guadagno.</li>
+        </ul>
+        <p><strong>Falsa diversificazione:</strong> 5 fondi diversi che comprano tutti le stesse grandi aziende. Conta cosa c'è dentro, non quanti nomi hai.</p>
+      </section>
+
+      <section class="ch" id="c6">
+        <span class="num">Capitolo 06</span>
+        <h2>Gli strumenti e i loro rischi</h2>
+        <p class="key">Qui trovi tipi di strumenti, non prodotti: non ti diciamo cosa comprare.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Strumento</th><th>Cos'è</th><th>Rischi principali</th><th>Da sapere</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Conto deposito</strong></td><td>soldi in banca, spesso vincolati, in cambio di un interesse</td><td>rendimento sotto l'inflazione; ritiro anticipato costoso se vincolato</td><td>protetto dal FITD fino a 100.000 € per depositante e per banca</td></tr>
+            <tr><td><strong>BOT e BTP</strong></td><td>prestiti allo Stato: cedole e capitale alla scadenza</td><td>di tasso se vendi prima, di credito dello Stato, di inflazione</td><td>tassati al 12,5%</td></tr>
+            <tr><td><strong>Obbligazioni societarie</strong></td><td>prestiti a un'azienda</td><td>di credito più alto, di tasso, di liquidità</td><td>le aziende falliscono più spesso degli Stati</td></tr>
+            <tr><td><strong>Azioni</strong></td><td>un pezzo di proprietà di un'azienda, a volte con dividendi</td><td>oscillazioni forti, perdita totale se l'azienda fallisce</td><td>una singola azione è tra le scelte più rischiose per chi inizia</td></tr>
+            <tr><td><strong>Fondi comuni</strong></td><td>soldi di tanti risparmiatori, gestiti da professionisti</td><td>quelli di ciò che contengono; costi a volte alti</td><td>"attivo" non vuol dire migliore</td></tr>
+            <tr><td><strong>ETF</strong></td><td>fondi quotati in borsa che di solito replicano un indice</td><td>quelli del paniere, di cambio; alcuni sono a leva o "short"</td><td>di solito costano meno, ma va controllato caso per caso</td></tr>
+          </tbody>
+        </table></div>
+        <p><strong>Da evitare per un principiante:</strong> CFD, opzioni, prodotti a leva, criptovalute speculative. Si può perdere il 100% del capitale (capitolo 11). Prima di qualsiasi acquisto leggi il <strong>KID</strong>, il documento con le informazioni chiave, e il prospetto.</p>
+      </section>
+
+      <section class="ch" id="c7">
+        <span class="num">Capitolo 07</span>
+        <h2>Costi e commissioni: il TER</h2>
+        <p class="key">Su 10.000 € per 20 anni, tra lo 0,2% e il 2% di costo annuo ci sono circa 7.500 € di differenza.</p>
+        <ul>
+          <li><strong>Commissioni</strong> di acquisto e vendita, a ogni operazione.</li>
+          <li><strong>TER</strong> (Total Expense Ratio): la percentuale che fondi ed ETF trattengono ogni anno per le spese.</li>
+          <li>Eventuali commissioni di ingresso, uscita o di performance.</li>
+          <li><strong>Imposta di bollo</strong> (capitolo 9).</li>
+        </ul>
+        <div class="tbl"><table>
+          <thead><tr><th>Costo annuo</th><th class="n">10.000 € dopo 20 anni</th></tr></thead>
+          <tbody>
+            <tr><td>0,2%</td><td class="n">~25.540 €</td></tr>
+            <tr><td>1%</td><td class="n">~21.911 €</td></tr>
+            <tr><td>2%</td><td class="n">~18.061 €</td></tr>
+          </tbody>
+        </table></div>
+        <p class="caption">Rendimento lordo ipotetico del 5% l'anno, calcolo semplificato senza tasse.</p>
+        <p>I costi sono scritti nel KID e nell'informativa che l'intermediario deve darti prima dell'acquisto e ogni anno.</p>
+      </section>
+
+      <section class="ch" id="c8">
+        <span class="num">Capitolo 08</span>
+        <h2>Il piano di accumulo (PAC)</h2>
+        <p class="key">Un PAC è un metodo, non un prodotto: una cifra fissa a intervalli regolari invece di tutto in una volta.</p>
+        <h3>Vantaggi</h3>
+        <ul>
+          <li>Abitudine al risparmio, anche con cifre piccole.</li>
+          <li>Con i prezzi bassi compri più quote, con quelli alti meno: il prezzo medio si spalma nel tempo.</li>
+          <li>Riduce il rischio di investire tutto nel momento sbagliato.</li>
+        </ul>
+        <h3>Limiti</h3>
+        <ul>
+          <li>Non garantisce un guadagno: se il mercato scende per anni, il PAC è in perdita.</li>
+          <li>Con una commissione fissa, su cifre piccole i costi pesano: 2 € su 50 € sono il 4%.</li>
+          <li>Serve costanza: fermarsi durante un calo è proprio l'errore che il metodo vuole evitare.</li>
+        </ul>
+      </section>
+
+      <section class="ch" id="c9">
+        <span class="num">Capitolo 09</span>
+        <h2>Le tasse sugli investimenti in Italia</h2>
+        <p class="key">Di regola si paga il 26% sui guadagni finanziari, ma solo il 12,5% sui titoli di Stato.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Cosa</th><th class="n">Aliquota</th><th>Riferimento</th></tr></thead>
+          <tbody>
+            <tr><td>Interessi, dividendi, plusvalenze in generale</td><td class="n">26%</td><td>D.L. 66/2014, circolare 19/E del 2014</td></tr>
+            <tr><td>BOT, BTP, buoni postali, titoli di Stati "white list"</td><td class="n">12,5%</td><td>stessa circolare</td></tr>
+            <tr><td>Plusvalenze da cripto-attività, dal 2026</td><td class="n">33%</td><td>legge di Bilancio 2025 (L. 207/2024); 26% per i token di moneta elettronica in euro</td></tr>
+          </tbody>
+        </table></div>
+        <p>Esempio: su 100 € di interessi paghi 12,50 € con un BTP e 26 € con un conto deposito.</p>
+        <h3>Plusvalenze e minusvalenze</h3>
+        <p>La <strong>plusvalenza</strong> è il guadagno quando vendi più caro di quanto hai pagato. La <strong>minusvalenza</strong> è la perdita, e in generale compensa plusvalenze future entro il quarto anno successivo. Attenzione: i guadagni su ETF e fondi sono "redditi di capitale" e non si compensano con perdite precedenti, mentre le loro perdite possono compensare altri guadagni, per esempio su azioni.</p>
+        <h3>Imposta di bollo</h3>
+        <ul>
+          <li><strong>Conto corrente:</strong> 34,20 € l'anno per ogni conto con giacenza media sopra i 5.000 €; sotto non si paga.</li>
+          <li><strong>Prodotti finanziari:</strong> 0,2% l'anno del valore. Buoni postali esenti fino a 5.000 €.</li>
+          <li>Dal 2026 le regole sono state riunite nel D.Lgs. 123/2025, con gli stessi importi.</li>
+        </ul>
+        <h3>Chi paga le tasse per te</h3>
+        <ul>
+          <li><strong>Amministrato:</strong> la banca calcola e paga per te. Non devi dichiarare nulla.</li>
+          <li><strong>Dichiarativo:</strong> spesso con intermediari esteri; calcoli e dichiari tu, con l'IVAFE al posto del bollo.</li>
+          <li><strong>Gestito:</strong> per le gestioni patrimoniali, sul risultato complessivo.</li>
+        </ul>
+        <p class="caption">Ricontrollato il 28/10/2026. Le regole cambiano: prima di decidere controlla il sito dell'Agenzia delle Entrate o chiedi a un professionista.</p>
+      </section>
+
+      <section class="ch" id="c10">
+        <span class="num">Capitolo 10</span>
+        <h2>Truffe e segnali d'allarme</h2>
+        <div class="stat"><b>1.848</b><span>siti di abusivismo finanziario oscurati dalla CONSOB da luglio 2019 al 15/10/2026, di cui 240 legati alle cripto. Ne vengono aggiunti ogni settimana.</span></div>
+        <ol class="alarm">
+          <li><span><strong>Rendimenti garantiti o altissimi.</strong> "Il 2% al giorno", "zero rischi": insieme non esistono.</span></li>
+          <li><span><strong>Fretta.</strong> "Solo oggi", "ultimi posti": serve a non farti ragionare.</span></li>
+          <li><span><strong>Trading facile.</strong> Corsi, segnali o app per "vivere di trading".</span></li>
+          <li><span><strong>Copy trading e gestori sui social.</strong> Copi anche le perdite; per l'ESMA servono soggetti autorizzati.</span></li>
+          <li><span><strong>Schema Ponzi.</strong> Rendimenti troppo regolari, bonus per chi porta altri, ritiri difficili.</span></li>
+          <li><span><strong>Finti consulenti e falsi vip.</strong> Messaggi privati, video e voci famose creati con l'IA.</span></li>
+          <li><span><strong>Siti clone.</strong> Nome e logo veri, indirizzo leggermente diverso.</span></li>
+          <li><span><strong>"Paga per sbloccare i guadagni".</strong> Se per ritirare ti chiedono altri soldi, è una truffa.</span></li>
+          <li><span><strong>App di controllo remoto, codici, password.</strong> Nessun operatore serio li chiede.</span></li>
+        </ol>
+        <h3>Come verificare</h3>
+        <ul>
+          <li>Controlla l'autorizzazione negli elenchi di CONSOB e Banca d'Italia; per i consulenti l'albo OCF.</li>
+          <li>Cerca il nome nella sezione "Occhio alle truffe!" del sito CONSOB.</li>
+          <li>Nel dubbio non pagare, non dare dati, parlane con un adulto e segnala a CONSOB o Polizia Postale.</li>
+        </ul>
+      </section>
+
+      <section class="ch" id="c11">
+        <span class="num">Capitolo 11</span>
+        <h2>Trading e CFD: perché quasi tutti perdono</h2>
+        <div class="stat"><b>74-89%</b><span>dei conti CFD dei piccoli investitori perde denaro, con perdite medie tra 1.600 € e 29.000 € (ESMA, 2018).</span></div>
+        <p>Un <strong>CFD</strong> è un contratto con cui scommetti sul movimento di un prezzo senza possedere nulla, quasi sempre con la <strong>leva</strong>: con 100 € muovi 3.000 € o più, e guadagni e perdite si moltiplicano.</p>
+        <p>Per questo l'ESMA ha introdotto regole poi adottate in Italia dalla CONSOB: leva massima da 30:1 a 2:1, chiusura automatica al 50% del margine, protezione dal saldo negativo, divieto di bonus e l'obbligo di mostrare la percentuale di conti in perdita.</p>
+        <p>Perché si perde: la leva ingrandisce i piccoli movimenti, i costi si sommano a ogni operazione, dall'altra parte ci sono professionisti con più dati, e paura e avidità spingono a scelte impulsive.</p>
+        <p><strong>Esperienza diretta.</strong> Chi scrive ha costruito e testato bot di trading automatico con controlli severi su dati storici: <strong>quasi nessuno ha superato i test</strong>. Un backtest che sembra bello spesso è solo adattato al passato.</p>
+      </section>
+
+      <section class="ch" id="c12">
+        <span class="num">Capitolo 12</span>
+        <h2>Se sei minorenne</h2>
+        <p class="key">Da minorenne non firmi da solo contratti bancari o di investimento: li gestiscono i genitori (art. 320 del Codice civile).</p>
+        <h3>Cosa si può fare</h3>
+        <ul>
+          <li>Conti e libretti per minori, intestati a te e gestiti dai genitori. Condizioni diverse da banca a banca.</li>
+          <li>Buoni fruttiferi postali intestati a te, sottoscritti dai genitori.</li>
+          <li>In alcuni casi un deposito titoli intestato a te; alcune operazioni richiedono il giudice tutelare.</li>
+          <li>Studiare: capire adesso interesse composto, costi e rischi è l'investimento più utile a 15 anni.</li>
+        </ul>
+        <h3>Cosa non puoi fare</h3>
+        <ul>
+          <li>Aprire da solo conti di trading, CFD o exchange di criptovalute.</li>
+          <li>Usare i documenti di un adulto per aprire un conto: viola i contratti e può essere illegale.</li>
+        </ul>
+        <p>Online servono 14 anni per un account Google gestito da soli e 18 per AdSense, che riceve i pagamenti di YouTube.</p>
+      </section>
+
+      <section class="ch" id="c13">
+        <span class="num">Capitolo 13</span>
+        <h2>Glossario</h2>
+        <dl class="gloss">
+          <dt>Azione</dt><dd>quota di proprietà di un'azienda</dd>
+          <dt>Backtest</dt><dd>prova di una strategia su dati passati; non garantisce il futuro</dd>
+          <dt>BOT / BTP</dt><dd>titoli di Stato italiani a breve / medio-lungo termine</dd>
+          <dt>Cedola</dt><dd>interesse periodico pagato da un'obbligazione</dd>
+          <dt>CFD</dt><dd>contratto per differenza, prodotto a leva ad alto rischio</dd>
+          <dt>CONSOB</dt><dd>autorità italiana che vigila sui mercati finanziari</dd>
+          <dt>Dividendo</dt><dd>parte degli utili distribuita agli azionisti</dd>
+          <dt>ESMA</dt><dd>autorità europea degli strumenti finanziari e dei mercati</dd>
+          <dt>ETF</dt><dd>fondo quotato in borsa, di solito replica un indice</dd>
+          <dt>FITD</dt><dd>fondo che protegge i depositi fino a 100.000 € per depositante e per banca</dd>
+          <dt>Indice</dt><dd>paniere di titoli usato come riferimento di un mercato</dd>
+          <dt>Inflazione</dt><dd>aumento generale dei prezzi</dd>
+          <dt>IVAFE</dt><dd>imposta sulle attività finanziarie detenute all'estero</dd>
+          <dt>KID</dt><dd>documento con le informazioni chiave di un prodotto</dd>
+          <dt>Leva</dt><dd>meccanismo che moltiplica guadagni e perdite</dd>
+          <dt>Obbligazione</dt><dd>prestito a un'azienda o a uno Stato in cambio di interessi</dd>
+          <dt>OCF</dt><dd>organismo che tiene l'albo dei consulenti finanziari</dd>
+          <dt>PAC</dt><dd>piano di accumulo, investimento a rate regolari</dd>
+          <dt>Plus / minusvalenza</dt><dd>guadagno / perdita realizzati vendendo</dd>
+          <dt>Spread</dt><dd>differenza tra prezzo di acquisto e di vendita</dd>
+          <dt>TER</dt><dd>costo annuo totale di un fondo o ETF</dd>
+          <dt>Volatilità</dt><dd>quanto oscilla il prezzo di uno strumento</dd>
+        </dl>
+      </section>
+
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Impresa Gigi · educazione finanziaria senza promesse</span>
+    <span>Informazioni raccolte da diverse fonti ufficiali e riconosciute, consultabili online. Hai trovato un errore? Segnalacelo: la guida si aggiorna.</span>
+    <span>© 2026 Impresa Gigi. Tutti i diritti riservati. Lettura gratuita per uso personale; vietate copia, ripubblicazione e uso commerciale senza autorizzazione scritta.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var m=document.getElementById('m'), y=document.getElementById('y'), r=document.getElementById('r');
+  var fmt=new Intl.NumberFormat('it-IT',{maximumFractionDigits:0});
+  var svg=document.getElementById('chart'), NS='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+  function draw(){
+    var M=+m.value, Y=+y.value, R=+r.value/100, i=R/12;
+    var paid=[],val=[],v=0;
+    for(var k=1;k<=Y*12;k++){v=v*(1+i)+M;if(k%12===0){paid.push(M*k);val.push(v);}}
+    document.getElementById('mo').textContent=fmt.format(M)+' €';
+    document.getElementById('yo').textContent=Y+(Y===1?' anno':' anni');
+    document.getElementById('ro').textContent=(+r.value).toFixed(1).replace('.',',')+'%';
+    document.getElementById('paid').textContent=fmt.format(M*Y*12)+' €';
+    document.getElementById('final').textContent=fmt.format(v)+' €';
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var W=360,H=150,L=8,Rt=8,T=10,B=22,max=Math.max(v,1);
+    var x=function(n){return L+(W-L-Rt)*(n/Y);}, yy=function(q){return T+(H-T-B)*(1-q/max);};
+    var ink=css('--muted'), line=css('--line'), pet=css('--petrol'), ora=css('--orange');
+    svg.appendChild(el('line',{x1:L,x2:W-Rt,y1:H-B,y2:H-B,stroke:line,'stroke-width':1}));
+    var pv='M'+x(0)+','+yy(0), pp='M'+x(0)+','+yy(0);
+    for(var n=0;n<Y;n++){pv+=' L'+x(n+1)+','+yy(val[n]);pp+=' L'+x(n+1)+','+yy(paid[n]);}
+    svg.appendChild(el('path',{d:pv+' L'+x(Y)+','+(H-B)+' L'+x(0)+','+(H-B)+' Z',fill:ora,'fill-opacity':.16,stroke:'none'}));
+    svg.appendChild(el('path',{d:pp+' L'+x(Y)+','+(H-B)+' L'+x(0)+','+(H-B)+' Z',fill:pet,'fill-opacity':.16,stroke:'none'}));
+    svg.appendChild(el('path',{d:pv,fill:'none',stroke:ora,'stroke-width':2.5,'stroke-linejoin':'round'}));
+    svg.appendChild(el('path',{d:pp,fill:'none',stroke:pet,'stroke-width':2,'stroke-dasharray':'5 4'}));
+    svg.appendChild(el('circle',{cx:x(Y),cy:yy(v),r:4,fill:ora}));
+    var t0=el('text',{x:L,y:H-6,fill:ink,'font-size':11,'font-family':'JetBrains Mono, monospace'});t0.textContent='oggi';svg.appendChild(t0);
+    var t1=el('text',{x:W-Rt,y:H-6,fill:ink,'font-size':11,'text-anchor':'end','font-family':'JetBrains Mono, monospace'});t1.textContent='tra '+Y+(Y===1?' anno':' anni');svg.appendChild(t1);
+    var l1=el('text',{x:L+4,y:T+12,fill:ora,'font-size':11.5,'font-weight':700});l1.textContent='valore';svg.appendChild(l1);
+    var l2=el('text',{x:L+52,y:T+12,fill:pet,'font-size':11.5,'font-weight':700});l2.textContent='versato';svg.appendChild(l2);
+  }
+  [m,y,r].forEach(function(e){e.addEventListener('input',draw);});
+  draw();
+  if(window.matchMedia){var mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',draw);}
+  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('section.ch').forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+
+</body>
+</html>
