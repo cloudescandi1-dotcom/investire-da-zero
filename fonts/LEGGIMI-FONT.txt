@@ -1,4 +1,4 @@
-I font in questa cartella NON sono coperti dal file LICENSE di Impresa Gigi.
+I font in questa cartella NON sono coperti dal file LICENSE di questo sito (titolare: Scandi).
 Sono distribuiti con la loro licenza originale, la SIL Open Font License 1.1
 (https://openfontlicense.org):
 - Bricolage Grotesque, Copyright The Bricolage Grotesque Project Authors
