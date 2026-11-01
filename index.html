@@ -98,11 +98,28 @@ section.ch{border-top:1px solid var(--line);padding-block:8px 32px}
 .ch ul,.ch ol{margin:0 0 16px;padding-left:20px}
 .ch li{margin-bottom:6px}
 .key{font-size:19px;margin:0 0 18px}
-.tbl{overflow-x:auto;margin:8px 0 20px}
-table{border-collapse:collapse;width:100%;font-size:14.5px}
-th,td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-weight:700;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-td.n,th.n{text-align:right;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-right:0;padding-left:12px}
+.tbl{margin:10px 0 22px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:var(--petrol-soft)}
+th{font-weight:700;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;background:var(--petrol-soft);font-family:var(--body)}
+td:first-child{font-weight:700}
+td.n,th.n{text-align:right;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* telefono: ogni riga diventa una scheda con le etichette delle colonne */
+@media (max-width:640px){
+  .tbl{border:0;border-radius:0;overflow:visible}
+  .tbl table,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .tbl tbody tr,.tbl tbody tr:nth-child(even){background:var(--petrol-soft);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:0 0 12px}
+  .tbl td{border:0;padding:5px 0;white-space:normal}
+  .tbl td:first-child{font:700 18px/1.3 var(--display);padding:0 0 10px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  .tbl td:not(:first-child)::before{content:attr(data-label);display:block;font:700 11.5px/1.4 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .tbl-num td:first-child::before{content:attr(data-label) " ";font:inherit;color:var(--muted);text-transform:none;letter-spacing:0}
+  .tbl-num td.n{display:flex;justify-content:space-between;align-items:baseline;gap:12px;text-align:left;padding:7px 0;border-top:1px dashed var(--line)}
+  .tbl-num td.n:nth-child(2){border-top:0}
+  .tbl-num td.n::before{display:inline;font-family:var(--body)}
+}
 .caption{font-size:13.5px;color:var(--muted);margin:-10px 0 18px}
 .alarm{padding-left:22px!important}
 .alarm li{margin-bottom:8px}
@@ -219,12 +236,12 @@ footer .wrap{display:grid;gap:6px}
         <div class="tbl"><table>
           <thead><tr><th>Rischio</th><th>Cosa vuol dire</th><th>Esempio</th></tr></thead>
           <tbody>
-            <tr><td><strong>Di mercato</strong></td><td>scende tutto il mercato</td><td>una crisi fa crollare le borse</td></tr>
-            <tr><td><strong>Di credito</strong></td><td>chi ti deve i soldi non li restituisce</td><td>un'azienda che ha emesso obbligazioni fallisce</td></tr>
-            <tr><td><strong>Di tasso</strong></td><td>se i tassi salgono, le obbligazioni già emesse valgono meno</td><td>un titolo al 2% quando i nuovi pagano il 4%</td></tr>
-            <tr><td><strong>Di liquidità</strong></td><td>non riesci a vendere subito, o solo a prezzo basso</td><td>un titolo poco scambiato</td></tr>
-            <tr><td><strong>Di cambio</strong></td><td>il cambio tra valute ti penalizza</td><td>un titolo in dollari quando il dollaro scende</td></tr>
-            <tr><td><strong>Di concentrazione</strong></td><td>hai messo tutto su una cosa sola</td><td>tutti i risparmi in un'unica azione</td></tr>
+            <tr><td data-label="Rischio"><strong>Di mercato</strong></td><td data-label="Cosa vuol dire">scende tutto il mercato</td><td data-label="Esempio">una crisi fa crollare le borse</td></tr>
+            <tr><td data-label="Rischio"><strong>Di credito</strong></td><td data-label="Cosa vuol dire">chi ti deve i soldi non li restituisce</td><td data-label="Esempio">un'azienda che ha emesso obbligazioni fallisce</td></tr>
+            <tr><td data-label="Rischio"><strong>Di tasso</strong></td><td data-label="Cosa vuol dire">se i tassi salgono, le obbligazioni già emesse valgono meno</td><td data-label="Esempio">un titolo al 2% quando i nuovi pagano il 4%</td></tr>
+            <tr><td data-label="Rischio"><strong>Di liquidità</strong></td><td data-label="Cosa vuol dire">non riesci a vendere subito, o solo a prezzo basso</td><td data-label="Esempio">un titolo poco scambiato</td></tr>
+            <tr><td data-label="Rischio"><strong>Di cambio</strong></td><td data-label="Cosa vuol dire">il cambio tra valute ti penalizza</td><td data-label="Esempio">un titolo in dollari quando il dollaro scende</td></tr>
+            <tr><td data-label="Rischio"><strong>Di concentrazione</strong></td><td data-label="Cosa vuol dire">hai messo tutto su una cosa sola</td><td data-label="Esempio">tutti i risparmi in un'unica azione</td></tr>
           </tbody>
         </table></div>
         <p><strong>Le perdite sono asimmetriche.</strong> Dopo un −50% per tornare al punto di partenza serve un <strong>+100%</strong>; dopo un −20% serve un +25%. Per questo evitare le grandi perdite conta più che inseguire i grandi guadagni. I soldi che ti servono entro pochi anni non dovrebbero stare in strumenti che oscillano molto.</p>
@@ -236,21 +253,21 @@ footer .wrap{display:grid;gap:6px}
         <p class="key">Il fattore che pesa di più è il tempo: iniziare presto con poco può contare più che iniziare tardi con tanto.</p>
         <p>Con l'<strong>interesse composto</strong> guadagni interessi anche sugli interessi già maturati e reinvestiti. Con quello semplice, solo sul capitale iniziale.</p>
         <h3>1.000 € una volta sola, al 5% ipotetico l'anno</h3>
-        <div class="tbl"><table>
+        <div class="tbl tbl-num"><table>
           <thead><tr><th>Anni</th><th class="n">Interesse semplice</th><th class="n">Interesse composto</th></tr></thead>
           <tbody>
-            <tr><td>10</td><td class="n">1.500 €</td><td class="n">~1.629 €</td></tr>
-            <tr><td>20</td><td class="n">2.000 €</td><td class="n">~2.653 €</td></tr>
-            <tr><td>30</td><td class="n">2.500 €</td><td class="n">~4.322 €</td></tr>
+            <tr><td data-label="Anni">10</td><td class="n" data-label="Interesse semplice">1.500 €</td><td class="n" data-label="Interesse composto">~1.629 €</td></tr>
+            <tr><td data-label="Anni">20</td><td class="n" data-label="Interesse semplice">2.000 €</td><td class="n" data-label="Interesse composto">~2.653 €</td></tr>
+            <tr><td data-label="Anni">30</td><td class="n" data-label="Interesse semplice">2.500 €</td><td class="n" data-label="Interesse composto">~4.322 €</td></tr>
           </tbody>
         </table></div>
         <h3>100 € al mese, a rendimenti ipotetici e costanti</h3>
-        <div class="tbl"><table>
+        <div class="tbl tbl-num"><table>
           <thead><tr><th>Anni</th><th class="n">Versato</th><th class="n">0%</th><th class="n">2%</th><th class="n">4%</th><th class="n">6%</th></tr></thead>
           <tbody>
-            <tr><td>10</td><td class="n">12.000 €</td><td class="n">12.000 €</td><td class="n">~13.272 €</td><td class="n">~14.725 €</td><td class="n">~16.388 €</td></tr>
-            <tr><td>20</td><td class="n">24.000 €</td><td class="n">24.000 €</td><td class="n">~29.480 €</td><td class="n">~36.677 €</td><td class="n">~46.204 €</td></tr>
-            <tr><td>30</td><td class="n">36.000 €</td><td class="n">36.000 €</td><td class="n">~49.273 €</td><td class="n">~69.405 €</td><td class="n">~100.452 €</td></tr>
+            <tr><td data-label="Anni">10</td><td class="n" data-label="Versato">12.000 €</td><td class="n" data-label="0%">12.000 €</td><td class="n" data-label="2%">~13.272 €</td><td class="n" data-label="4%">~14.725 €</td><td class="n" data-label="6%">~16.388 €</td></tr>
+            <tr><td data-label="Anni">20</td><td class="n" data-label="Versato">24.000 €</td><td class="n" data-label="0%">24.000 €</td><td class="n" data-label="2%">~29.480 €</td><td class="n" data-label="4%">~36.677 €</td><td class="n" data-label="6%">~46.204 €</td></tr>
+            <tr><td data-label="Anni">30</td><td class="n" data-label="Versato">36.000 €</td><td class="n" data-label="0%">36.000 €</td><td class="n" data-label="2%">~49.273 €</td><td class="n" data-label="4%">~69.405 €</td><td class="n" data-label="6%">~100.452 €</td></tr>
           </tbody>
         </table></div>
         <p class="caption">Capitalizzazione mensile, prima di tasse, costi e inflazione. Puoi provare altre cifre con la <a href="#calcolatrice">calcolatrice</a>.</p>
@@ -280,12 +297,12 @@ footer .wrap{display:grid;gap:6px}
         <div class="tbl"><table>
           <thead><tr><th>Strumento</th><th>Cos'è</th><th>Rischi principali</th><th>Da sapere</th></tr></thead>
           <tbody>
-            <tr><td><strong>Conto deposito</strong></td><td>soldi in banca, spesso vincolati, in cambio di un interesse</td><td>rendimento sotto l'inflazione; ritiro anticipato costoso se vincolato</td><td>protetto dal FITD fino a 100.000 € per depositante e per banca</td></tr>
-            <tr><td><strong>BOT e BTP</strong></td><td>prestiti allo Stato: cedole e capitale alla scadenza</td><td>di tasso se vendi prima, di credito dello Stato, di inflazione</td><td>tassati al 12,5%</td></tr>
-            <tr><td><strong>Obbligazioni societarie</strong></td><td>prestiti a un'azienda</td><td>di credito più alto, di tasso, di liquidità</td><td>le aziende falliscono più spesso degli Stati</td></tr>
-            <tr><td><strong>Azioni</strong></td><td>un pezzo di proprietà di un'azienda, a volte con dividendi</td><td>oscillazioni forti, perdita totale se l'azienda fallisce</td><td>una singola azione è tra le scelte più rischiose per chi inizia</td></tr>
-            <tr><td><strong>Fondi comuni</strong></td><td>soldi di tanti risparmiatori, gestiti da professionisti</td><td>quelli di ciò che contengono; costi a volte alti</td><td>"attivo" non vuol dire migliore</td></tr>
-            <tr><td><strong>ETF</strong></td><td>fondi quotati in borsa che di solito replicano un indice</td><td>quelli del paniere, di cambio; alcuni sono a leva o "short"</td><td>di solito costano meno, ma va controllato caso per caso</td></tr>
+            <tr><td data-label="Strumento"><strong>Conto deposito</strong></td><td data-label="Cos'è">soldi in banca, spesso vincolati, in cambio di un interesse</td><td data-label="Rischi principali">rendimento sotto l'inflazione; ritiro anticipato costoso se vincolato</td><td data-label="Da sapere">protetto dal FITD fino a 100.000 € per depositante e per banca</td></tr>
+            <tr><td data-label="Strumento"><strong>BOT e BTP</strong></td><td data-label="Cos'è">prestiti allo Stato: cedole e capitale alla scadenza</td><td data-label="Rischi principali">di tasso se vendi prima, di credito dello Stato, di inflazione</td><td data-label="Da sapere">tassati al 12,5%</td></tr>
+            <tr><td data-label="Strumento"><strong>Obbligazioni societarie</strong></td><td data-label="Cos'è">prestiti a un'azienda</td><td data-label="Rischi principali">di credito più alto, di tasso, di liquidità</td><td data-label="Da sapere">le aziende falliscono più spesso degli Stati</td></tr>
+            <tr><td data-label="Strumento"><strong>Azioni</strong></td><td data-label="Cos'è">un pezzo di proprietà di un'azienda, a volte con dividendi</td><td data-label="Rischi principali">oscillazioni forti, perdita totale se l'azienda fallisce</td><td data-label="Da sapere">una singola azione è tra le scelte più rischiose per chi inizia</td></tr>
+            <tr><td data-label="Strumento"><strong>Fondi comuni</strong></td><td data-label="Cos'è">soldi di tanti risparmiatori, gestiti da professionisti</td><td data-label="Rischi principali">quelli di ciò che contengono; costi a volte alti</td><td data-label="Da sapere">"attivo" non vuol dire migliore</td></tr>
+            <tr><td data-label="Strumento"><strong>ETF</strong></td><td data-label="Cos'è">fondi quotati in borsa che di solito replicano un indice</td><td data-label="Rischi principali">quelli del paniere, di cambio; alcuni sono a leva o "short"</td><td data-label="Da sapere">di solito costano meno, ma va controllato caso per caso</td></tr>
           </tbody>
         </table></div>
         <p><strong>Da evitare per un principiante:</strong> CFD, opzioni, prodotti a leva, criptovalute speculative. Si può perdere il 100% del capitale (capitolo 11). Prima di qualsiasi acquisto leggi il <strong>KID</strong>, il documento con le informazioni chiave, e il prospetto.</p>
@@ -301,12 +318,12 @@ footer .wrap{display:grid;gap:6px}
           <li>Eventuali commissioni di ingresso, uscita o di performance.</li>
           <li><strong>Imposta di bollo</strong> (capitolo 9).</li>
         </ul>
-        <div class="tbl"><table>
+        <div class="tbl tbl-num"><table>
           <thead><tr><th>Costo annuo</th><th class="n">10.000 € dopo 20 anni</th></tr></thead>
           <tbody>
-            <tr><td>0,2%</td><td class="n">~25.540 €</td></tr>
-            <tr><td>1%</td><td class="n">~21.911 €</td></tr>
-            <tr><td>2%</td><td class="n">~18.061 €</td></tr>
+            <tr><td data-label="Costo annuo">0,2%</td><td class="n" data-label="10.000 € dopo 20 anni">~25.540 €</td></tr>
+            <tr><td data-label="Costo annuo">1%</td><td class="n" data-label="10.000 € dopo 20 anni">~21.911 €</td></tr>
+            <tr><td data-label="Costo annuo">2%</td><td class="n" data-label="10.000 € dopo 20 anni">~18.061 €</td></tr>
           </tbody>
         </table></div>
         <p class="caption">Rendimento lordo ipotetico del 5% l'anno, calcolo semplificato senza tasse.</p>
@@ -335,12 +352,12 @@ footer .wrap{display:grid;gap:6px}
         <span class="num">Capitolo 09</span>
         <h2>Le tasse sugli investimenti in Italia</h2>
         <p class="key">Di regola si paga il 26% sui guadagni finanziari, ma solo il 12,5% sui titoli di Stato.</p>
-        <div class="tbl"><table>
+        <div class="tbl tbl-num"><table>
           <thead><tr><th>Cosa</th><th class="n">Aliquota</th><th>Riferimento</th></tr></thead>
           <tbody>
-            <tr><td>Interessi, dividendi, plusvalenze in generale</td><td class="n">26%</td><td>D.L. 66/2014, circolare 19/E del 2014</td></tr>
-            <tr><td>BOT, BTP, buoni postali, titoli di Stati "white list"</td><td class="n">12,5%</td><td>stessa circolare</td></tr>
-            <tr><td>Plusvalenze da cripto-attività, dal 2026</td><td class="n">33%</td><td>legge di Bilancio 2025 (L. 207/2024); 26% per i token di moneta elettronica in euro</td></tr>
+            <tr><td data-label="Cosa">Interessi, dividendi, plusvalenze in generale</td><td class="n" data-label="Aliquota">26%</td><td data-label="Riferimento">D.L. 66/2014, circolare 19/E del 2014</td></tr>
+            <tr><td data-label="Cosa">BOT, BTP, buoni postali, titoli di Stati "white list"</td><td class="n" data-label="Aliquota">12,5%</td><td data-label="Riferimento">stessa circolare</td></tr>
+            <tr><td data-label="Cosa">Plusvalenze da cripto-attività, dal 2026</td><td class="n" data-label="Aliquota">33%</td><td data-label="Riferimento">legge di Bilancio 2025 (L. 207/2024); 26% per i token di moneta elettronica in euro</td></tr>
           </tbody>
         </table></div>
         <p>Esempio: su 100 € di interessi paghi 12,50 € con un BTP e 26 € con un conto deposito.</p>
@@ -450,7 +467,7 @@ footer .wrap{display:grid;gap:6px}
   <div class="wrap">
     <span>Impresa Gigi · educazione finanziaria senza promesse</span>
     <span>Informazioni raccolte da diverse fonti ufficiali e riconosciute, consultabili online. Hai trovato un errore? Scrivilo nei commenti di un video sul canale <a href="https://www.youtube.com/@ImpresaGigi" rel="noopener noreferrer">YouTube @ImpresaGigi</a>: la guida si aggiorna.</span>
-    <span>© 2026 Impresa Gigi. Tutti i diritti riservati. Lettura gratuita per uso personale; vietate copia, ripubblicazione e uso commerciale senza autorizzazione scritta.</span>
+    <span>© 2026 Scandi (Impresa Gigi). Tutti i diritti riservati. Lettura gratuita per uso personale; vietate copia, ripubblicazione e uso commerciale senza autorizzazione scritta.</span>
   </div>
 </footer>
 
